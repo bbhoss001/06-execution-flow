@@ -71,7 +71,15 @@ jobs:
     uses: ./.github/workflows/reusable.yaml
     with:
       artifact-name: dist-files
-
+    # secrets:
+    #   some-secret: ${{ secrets.some-secret }}
+  
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy outputs
+        run: echo "${{ needs.deploy.outputs.result }}"
   report:
     needs: [lint, deploy]
     if: failure() ##if any previous job failed ; success() if none of the job failed ; always() always run the job no matter what ; cancelled() run the job/step if the workflow was cancelled
