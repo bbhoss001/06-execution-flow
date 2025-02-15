@@ -68,7 +68,7 @@ jobs:
           path: dist
   deploy:
     needs: build
-    uses: ./.gihub/workflows/reusable.yaml 
+    uses: ./.gihub/workflows/reusable.yaml@v0
 
   report:
     needs: [lint, deploy]
